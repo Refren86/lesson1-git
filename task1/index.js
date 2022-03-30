@@ -1,4 +1,4 @@
 function calculate() {
-  //Here is your solution
-  return
+  console.log("commit");
+  return;
 }
