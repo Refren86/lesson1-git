@@ -1,4 +1,6 @@
 function calculate() {
-  //Here is your solution
-  return
+  console.log("commit");
+  console.log("commit2");
+  console.log("commit3");
+  return;
 }
