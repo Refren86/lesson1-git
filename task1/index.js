@@ -1,23 +1,43 @@
 const { log } = console;
 
 const calculate = (dotsToCalculate) => {
-  const splitter = dotsToCalculate.split(" ");
-  const leftDots = splitter[0];
-  const operator = splitter[1];
-  const rightDots = splitter[2];
+  if (typeof dotsToCalculate !== "string" || dotsToCalculate.length === 0) {
+    return "Argument passed must be of type 'string' and cannot be empty string";
+  }
 
-  let dots = "";
-  const dotsCount = eval(`${leftDots.length} ${operator} ${rightDots.length}`);
+  const splitter = dotsToCalculate.split(" ");
+  const leftDots = splitter[0].length;
+  const operator = splitter[1];
+  const rightDots = splitter[2].length;
+  let dotsCount;
+
+  switch (operator) {
+    case "+":
+      dotsCount = leftDots + rightDots;
+      break;
+    case "-":
+      dotsCount = leftDots - rightDots;
+      break;
+    case "//":
+      dotsCount = Math.trunc(leftDots / rightDots);
+      break;
+    case "*":
+      dotsCount = leftDots * rightDots;
+      break;
+    default:
+      return "Invalid operator!";
+  }
 
   if (dotsCount < 0) {
     return "The result of calculation is less than 0";
   }
 
-  for (let i = 0; i < dotsCount; i++) {
-    dots += ".";
-  }
-
-  return dots;
+  return ".".repeat(dotsCount);
 };
 
-// log(calculate("..... // ."));
+log(calculate("..... // .."));
+log(calculate("....... + ."));
+log(calculate("... * .."));
+log(calculate(".. - ."));
+log(calculate(""));
+log(calculate(4242));
